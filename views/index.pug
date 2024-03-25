@@ -1,0 +1,52 @@
+html
+  head
+    title= title
+    style
+      include ../public/style.css
+  body
+  - var first = true
+    h1(class="city") Östersund
+    div(id="temperatureHolder")
+      -for( var i=0;i<temperature.length ;i++)
+        if first
+          div(class="main shown")
+            h1(id="day")= d[i]
+            ul(class="list left")
+              each time in t[i]
+                li= time
+            ul(class="list left")
+              each temp in temperature[i]
+                li= temp
+            ul(class="list right")
+              each s in speed[i]
+                li= s
+            ul(class="list right")
+              each deg in direction[i]
+                div(class="arrow_container")
+                  img(src="arrow.png" class="arrow" style={transform: 'rotate(' + deg + 'deg)'})
+          -first = false
+        else
+          div(class="main")
+            h1(id="day")= d[i]
+            ul(class="list left")
+              each time in t[i]
+                li= time
+            ul(class="list left")
+              each temp in temperature[i]
+                li= temp
+            ul(class="list right")
+              each s in speed[i]
+                li= s
+            ul(class="list right")
+              each deg in direction[i]
+                div(class="arrow_container")
+                  img(src="arrow.png" class="arrow" style={transform: 'rotate(' + deg + 'deg)'})
+
+    aside(class="button_container")
+      img(src="fMhGv.png" class="button previous_button" onclick="change_day(-1)")
+      img(src="fMhGv.png" class="button next_button" onclick="change_day(1)")        
+    
+    
+  
+  script
+    include ../public/script.js
